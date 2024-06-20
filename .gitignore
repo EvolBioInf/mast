@@ -9,4 +9,7 @@ doc/*.toc
 doc/date.txt
 doc/ego.tex
 doc/mast.tex
+doc/mastDoc.ps
 doc/version.txt
+
+mast/mast

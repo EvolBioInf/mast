@@ -1,0 +1,10 @@
+\Require $q$ \Comment{query}
+\Require $r$ \Comment{reference}
+\Ensure $m_{\rm l}$ \Comment{array of match lengths along $q$}
+\State{$\mbox{esa}\leftarrow\mbox{getEsa}(r)$}
+\State{$i\leftarrow 1$}
+\While{$i\le|q|$}
+   \State{$\ell\leftarrow\mbox{esa.MatchPrefix}(q[i...])$}
+   \State{$m_{\rm l}[i]\leftarrow\ell$}
+   \State{$i\leftarrow i+\ell + 1$}
+\EndWhile

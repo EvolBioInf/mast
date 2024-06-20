@@ -1,0 +1,46 @@
+#+begin_export latex
+\section{Introduction}
+!The package \ty{util} summarizes functions for the programs in the
+!\ty{mast} repo.
+\section{Implementation}
+The outline of \ty{util} contains hooks for imports, variables, and
+functions.  \bpa{util}{pa:uti}
+#+end_export
+#+begin_src go <<util.go>>=
+  package util
+
+  import (
+	  //<<Imports, Pa. \ref{pa:uti}>>
+  )
+
+  //<<Variables, Pa. \ref{pa:uti}>>
+  //<<Functions, Pa. \ref{pa:uti}>>
+#+end_src
+#+begin_export latex
+! The function \ty{Version} takes as argument the name of the program
+! and prints a version string before it exits.
+#+end_export
+#+begin_src go <<Functions, Pa. \ref{pa:uti}>>=
+  func Version(name string) {
+	  a := "Bernhard Haubold"
+	  e := "haubold@evolbio.mpg.de"
+	  l := "Gnu General Public License, " +
+		  "https://www.gnu.org/licenses/gpl.html"
+	  clio.PrintInfo(name, version, date, a, e, l)
+	  os.Exit(0)
+  }
+#+end_src
+#+begin_export latex
+We declare the variables \ty{version}, and \ty{date} as global
+variables. Their values are injected at compile time.
+#+end_export
+#+begin_src go <<Variables, Pa. \ref{pa:uti}>>=
+  var version, date string
+#+end_src
+#+begin_export latex
+We import \ty{clio} and \ty{os}.
+#+end_export
+#+begin_src go <<Imports, Pa. \ref{pa:uti}>>=
+  "github.com/evolbioinf/clio"
+  "os"
+#+end_src

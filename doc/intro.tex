@@ -1,9 +1,36 @@
 The matching statistics of string $q$ with respect to string $r$ is
 the array of lengths of longest substring in $q$ that match somewhere
-in $r$ \cite{cha94:sub}. In our program Fur, we implemented something
-similar, match lengths as computed with Algorithm~\ref{alg:ml}. The
-purpose of this document is to compare the match lengths of Fur with
-the matching statistics. For this purpose we write the program
-\ty{mast}, which takes as input a query sequence, $q$, and a reference
-sequence, $r$, and prints the match lengths and matching statistics of
-$q$ with respect to $r$.
+in $r$ \cite{cha94:sub}. Consider for example $q=\ty{AAAATATTAA}$ and
+$r=\ty{TTAAAATTAA}$; then the first matching statistic, $m_{\rm
+  s}[1]$, is the length of the longest prefix of $q[1...]$ that
+matches somewhere in $r$. This happens to be \ty{AAAAT}, which matches
+at $r[3]$, so $m_{\rm s}[1]=5$. The next match statistic, $m_{\rm
+  s}[2]=4$, and so on, as shown in Table~\ref{tab:ms}.
+
+\begin{table}
+  \caption{Matching statistics, $m_{\rm s}$ and match lengths, $m_{\rm
+      l}$ of the query $q=\ty{AAAATATTAA}$ with respect to the
+    reference $r=\ty{TTAAAATTAA}$.}\label{tab:ms}
+  \begin{center}
+    \input{ml}
+  \end{center}
+\end{table}
+
+In our program Fur, we implemented something similar to the matching
+statistics, which we call the match lengths, $m_{\rm l}$. Instead of
+matches starting at every position in $q$, we skip each match before
+matching again. Then we interpolate the missing match lengths as
+$m_{\rm l}[i]\leftarrow m_{\rm l}[i-1]-1$ whereever $m_{\rm l}[i] <
+m_{\rm l}[i-1]-1$.
+
+The first match length is always the same as the first matching
+statistics, $m_{\rm s}[1]=m_{\rm l}[1]$. Then the matching length
+computation skips forward to start matching again at $q[l+2]$ to find
+$m_{\rm l}[l+2]$. Algorithm~\ref{alg:ml} summarizes this.
+
+\begin{algorithm}
+  \caption{Calculate match lengths}\label{alg:ml}
+  \begin{algorithmic}
+    \input{mlAlg}
+  \end{algorithmic}
+\end{algorithm}
