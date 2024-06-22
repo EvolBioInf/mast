@@ -9,7 +9,8 @@ Explore matching statistics.
 make
 ```
 
-The program `mast` is now in directory `bin`. To run a small example,
+The program `mast` is now in directory `bin`. To apply `mast` to a
+small [query](mast/q1.fasta) and [reference](mast/r1.fasta),
 
 ```
 ./bin/mast mast/q1.fasta mast/r1.fasta
@@ -32,8 +33,8 @@ This yields
 10      1       1
 ```
 
-To run the example from the
-[Fastms](https://github.com/odenas/indexed_ms) website,
+To run the [query](mast/q2.fasta) and [reference](mast/r2.fasta) from
+the [Fastms](https://github.com/odenas/indexed_ms) website,
 
 ```
 ./bin/mast mast/q2.fasta mast/r2.fasta
