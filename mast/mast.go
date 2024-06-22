@@ -19,8 +19,9 @@ func parse(r io.Reader, args ...interface{}) {
 		rseq := sc.Sequence()
 		for _, qseq := range qseqs {
 			q := qseq.Data()
+			r := rseq.Data()
 			ml := make([]int, len(q))
-			esa := esa.MakeEsa(rseq.Data())
+			esa := esa.MakeEsa(r)
 			i := 0
 			for i < len(q) {
 				l := esa.MatchPref(q[i:]).L
@@ -38,7 +39,7 @@ func parse(r io.Reader, args ...interface{}) {
 			}
 			fmt.Printf("# Query: %s; reference: %s\n",
 				qseq.Header(), rseq.Header())
-			fmt.Printf("# Pos\tm_s\tm_l\n")
+			fmt.Printf("# i\tms[i]\tml[i]\n")
 			for i := 0; i < len(ml); i++ {
 				fmt.Printf("%d\t%d\t%d\n", i+1, ms[i], ml[i])
 			}
@@ -48,7 +49,8 @@ func parse(r io.Reader, args ...interface{}) {
 func main() {
 	clio.PrepLog("mast")
 	u := "mast [option]... q.fasta [r1.fasta]..."
-	p := "Calculate matching statistics and match lengths for q w.r.t. r"
+	p := "Calculate matching statistics and " +
+		"match lengths for q w.r.t. r"
 	e := "mast q.fasta r.fasta"
 	clio.Usage(u, p, e)
 	optV := flag.Bool("v", false, "version")

@@ -1,5 +1,5 @@
 # Query: q1; reference: r1
-# Pos	m_s	m_l
+# i	ms[i]	ml[i]
 1	5	5
 2	4	4
 3	3	3

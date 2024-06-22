@@ -7,9 +7,14 @@ doc/*.log
 doc/*.pdf
 doc/*.toc
 doc/date.txt
-doc/ego.tex
 doc/mast.tex
 doc/mastDoc.ps
+doc/tutorial.tex
 doc/version.txt
 
 mast/mast
+
+tutorial/mast.dat
+tutorial/mast.out
+tutorial/neighbors
+tutorial/targets

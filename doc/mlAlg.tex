@@ -1,10 +1,15 @@
 \Require $q$ \Comment{query}
 \Require $r$ \Comment{reference}
-\Ensure $m_{\rm l}$ \Comment{array of match lengths along $q$}
-\State{$\mbox{esa}\leftarrow\mbox{getEsa}(r)$}
+\Ensure $\ml$ \Comment{array of match lengths along $q$}
+\State{$\mathrm{esa}\leftarrow\mathrm{getEsa}(r)$}
 \State{$i\leftarrow 1$}
-\While{$i\le|q|$}
-   \State{$\ell\leftarrow\mbox{esa.MatchPrefix}(q[i...])$}
-   \State{$m_{\rm l}[i]\leftarrow\ell$}
+\While{$i\le|q|$} \Comment{matching phase}
+   \State{$\ell\leftarrow\mathrm{esa.MatchPrefix}(q[i...])$}
+   \State{$\ml[i]\leftarrow\ell$}
    \State{$i\leftarrow i+\ell + 1$}
 \EndWhile
+\For{$i\leftarrow 2, |q|$} \Comment{interpolation phase}
+   \If{$\ml[i]<\ml[i-1]-1$}
+      \State{$\ml[i]\leftarrow\ml[i-1]-1$}
+   \EndIf
+\EndFor
