@@ -1,5 +1,5 @@
 The matching statistics of a query string $q$ with respect to a
-reference string $r$ is the array of lengths of longest substring in
+reference string $r$ is the array of lengths of longest substrings in
 $q$ that match somewhere in $r$ \cite[p. 132ff]{gus97:alg}. Consider
 for example $q=\ty{AAAATATTAA}$ and $r=\ty{TTAAAATTAA}$. The first
 matching statistic, $\ms[1]$, is the length of the longest prefix of
@@ -35,19 +35,15 @@ equation~(\ref{eq:ms}).}\label{tab:ms2}
 \end{center}
 \end{table}
 
-In our program Fur, we implemented something similar to the matching
+In our program Fur, we calculate something similar to the matching
 statistics, which we call the match lengths, $\ml$. Instead of matches
 starting at every position in $q$, we find a match of length $\ell$
 starting at $q[i]$, store $\ell$ in $\ml[i]$, and skip the match plus
 its flanking mismatch before starting the next match at
-$q[i+\ell+1]$. These steps are summarized in lines 3--7 of
-Algorithm~\ref{alg:ml}.
-
- (Algorithm~\ref{alg:ml}, line 4), store $\ell$ (line 5), and
-skip the match plus its flanking mismatch (line 6), before repeating.
-After the matching phase we interpolate the missing match lengths as
-$\ml[i]\leftarrow \ml[i-1]-1$ wherever $\ml[i] <
-\ml[i-1]-1$ (lines 8--12).
+$q[i+\ell+1]$. These matching steps are summarized in lines 3--7 of
+Algorithm~\ref{alg:ml}. After this matching phase, we interpolate the
+missing match lengths as $\ml[i]\leftarrow \ml[i-1]-1$ wherever
+$\ml[i] < \ml[i-1]-1$ (lines 8--12).
 
 \begin{algorithm}
   \caption{Calculate match lengths.}\label{alg:ml}
@@ -56,15 +52,14 @@ $\ml[i]\leftarrow \ml[i-1]-1$ wherever $\ml[i] <
   \end{algorithmic}
 \end{algorithm}
 
-Calculating $\ml$ doesn't require suffix links, which makes it
-easier to calculate than $\ms$. However, $\ml$ is at
-best an approximation of $\ms$. In Table~\ref{tab:ms1}
-$\ms$ and $\ml$ differ at only two positions,
-$i\in\{5,6\}$, in Table~\ref{tab:ms2} at five, $i\in\{2,3,4,7,8\}$.
+Calculating $\ml$ doesn't require suffix links, which makes it easier
+than calculating $\ms$. However, $\ml$ is at best an approximation of
+$\ms$. In Table~\ref{tab:ms1} $\ms$ and $\ml$ differ at positions 5
+and 6, in Table~\ref{tab:ms2} at five, positions 2, 3, 4, 7, and 8.
 
-The point of calculating $\ml$ is to distinguish regions in $q$
-that are homologous to $r$ from regions that are not. The question is,
-whether $\ms$ and $\ml$ are equivalent for this
-purpose. The program \ty{mast} is intended for easy investigation
-calculation of $\ms$ and $\ml$ to answer that question. Take a look
-at the Tutorial a comparison of $\ms$ and $\ml$ on simulated data.
+The point of calculating $\ml$ is to distinguish regions in $q$ that
+are homologous to $r$ from regions that are not. The question is,
+whether $\ms$ and $\ml$ are equivalent for this purpose. The
+program \ty{mast} is intended for easy calculation of $\ms$ and $\ml$
+to answer that question. Take a look at the Tutorial for a comparison
+of $\ms$ and $\ml$ on simulated data.

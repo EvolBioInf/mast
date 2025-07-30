@@ -1,12 +1,13 @@
 #+begin_export latex
-In this Tutorial we calculate and plot $\ms$ and $\ml$. We begin by
-simulating a pair of sequences using the program \ty{stan}, which is
-intended for simulating target and neighbor sequences. By default the
-target sequence is 10\,kb long and contains a 1\,kb insertion at its
-center; the neighbor sequence is 9\,kb long as it lacks the insertion,
-but is otherwise homologous to the target. With the option \ty{-o}
-\ty{stan} overwrites an existing pair of directories containing
-targets and neighbors.
+In this Tutorial we calculate and plot the matching statistics, $\ms$,
+and the match lengths, $\ml$. We begin by simulating a pair of
+sequences using the program \ty{stan}, which is intended for
+simulating target and neighbor sequences. By default, the target
+sequence is 10\,kb long and contains a 1\,kb insertion at its center;
+the neighbor sequence is 9\,kb long as it lacks the insertion, but is
+otherwise homologous to the target. With the option \ty{-o} \ty{stan}
+overwrites an existing pair of directories containing targets and
+neighbors.
 #+end_export
 #+begin_src sh <<tut.sh>>=
   stan -t 1 -n 1 -o

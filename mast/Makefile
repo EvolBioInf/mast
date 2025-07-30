@@ -7,7 +7,7 @@ EXE = mast
 all: $(EXE)
 
 $(EXE): $(EXE).go
-	go build -ldflags "-X github.com/evolbioinf/gin/util.version=$(VERSION) -X github.com/evolbioinf/gin/util.date=$(DATE)" $(EXE).go
+	go build -ldflags "-X github.com/evolbioinf/mast/util.version=$(VERSION) -X github.com/evolbioinf/mast/util.date=$(DATE)" $(EXE).go
 $(EXE).go: $(EXE).org
 	if [ $(NW) != "" ]; then\
 		bash ../scripts/org2nw $(EXE).org | notangle -R$(EXE).go | gofmt > $(EXE).go;\
