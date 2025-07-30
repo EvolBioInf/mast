@@ -17,6 +17,7 @@ functions.  \bpa{util}{pa:uti}
   //<<Functions, Pa. \ref{pa:uti}>>
 #+end_src
 #+begin_export latex
+\epa
 ! The function \ty{Version} takes as argument the name of the program
 ! and prints a version string before it exits.
 #+end_export

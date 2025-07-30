@@ -1,4 +1,4 @@
-src = mast.tex tutorial.tex
+src = mast.tex tutorial.tex util.tex
 txt = mastDoc
 date = $(shell bash ../scripts/getDate.sh)
 version = $(shell bash ../scripts/getVersion.sh)
