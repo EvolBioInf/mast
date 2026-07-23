@@ -6,6 +6,7 @@ doc/*.dvi
 doc/*.log
 doc/*.pdf
 doc/*.toc
+doc/*.out
 doc/date.txt
 doc/mast.tex
 doc/mastDoc.ps
